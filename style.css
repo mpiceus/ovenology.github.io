@@ -9561,6 +9561,14 @@ ul {
 	line-height: 1.8;
 }
 
+.single-blog-box .blog-content .item-details a {
+	color: #c79972;
+}
+
+.single-blog-box .blog-content .item-details a:hover {
+	color: #5b3c07;
+}
+
 .single-blog-box .blog-content .entry-meta {
 	margin-bottom: 10px;
 }
