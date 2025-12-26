@@ -61,16 +61,33 @@
     });
 
     $(document).ready(function () {
-        // đọc keyword từ URL
-        const params = new URLSearchParams(window.location.search);
-        const keyword = params.get('q');
-         if (keyword) {
-            // đổ keyword vào input recipes
-            $('.recipe-search').val(keyword);
-            // gọi filter
-            applyRecipeFilter();
-        }
+    const params = new URLSearchParams(window.location.search);
+
+    const keyword = params.get('q');
+    const category = params.get('category');
+
+    // search text
+    if (keyword) {
+        $('.recipe-search').val(keyword);
+    }
+
+    // category từ menu
+    if (category) {
+        $('.advance-search-form input[data-type="category"]').each(function () {
+            let labelText = $(this).next('label').text().trim().toLowerCase();
+
+            if (labelText === category.toLowerCase()) {
+                $(this).prop('checked', true);
+            }
+        });
+    }
+
+    // chạy filter
+    if (keyword || category) {
+        applyRecipeFilter();
+    }
     });
+
 
     /*-------------------------------------
     Custom Search Box (Gia Linh)
@@ -430,6 +447,127 @@
             $(this).css({
                 backgroundImage: 'url(' + img + ')',
             });
+        });
+    }
+
+    /*-------------------------------------
+    Login Form
+    -------------------------------------*/
+    /*-------------------------------------
+Login Form
+-------------------------------------*/
+    const loginForm = document.getElementById("login-form");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById("username");
+            const password = document.getElementById("password");
+
+            let isValid = true;
+
+            clearError(username);
+            clearError(password);
+
+            if (username.value.trim() === "") {
+                showError(username, "Please enter username or email");
+                isValid = false;
+            }
+
+            if (password.value.trim() === "") {
+                showError(password, "Please enter password");
+                isValid = false;
+            } else {
+                const pwd = password.value;
+                let errors = [];
+
+                if (pwd.length < 8) errors.push("At least 8 characters");
+                if (!/[A-Z]/.test(pwd)) errors.push("At least one uppercase letter");
+                if (!/[a-z]/.test(pwd)) errors.push("At least one lowercase letter");
+                if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) errors.push("At least one special character");
+
+                if (errors.length > 0) {
+                    showError(password, errors.join(", "));
+                    isValid = false;
+                }
+            }
+
+            if (isValid) {
+                alert("Login form is valid (demo only)");
+            }
+        });
+    }
+
+    function showError(input, message) {
+        const errorDiv = input.parentElement.querySelector(".help-block.with-errors");
+        errorDiv.innerHTML = `<ul class="list-unstyled"><li>${message}</li></ul>`;
+    }
+
+    function clearError(input) {
+        const errorDiv = input.parentElement.querySelector(".help-block.with-errors");
+        errorDiv.innerHTML = "";
+    }
+
+    const registerForm = document.getElementById("register-form");
+
+    if (registerForm) {
+        registerForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("reg-email");
+            const username = document.getElementById("reg-username");
+            const password = document.getElementById("reg-password");
+            const confirm = document.getElementById("reg-confirm");
+
+            let isValid = true;
+
+            clearError(email);
+            clearError(username);
+            clearError(password);
+            clearError(confirm);
+
+            if (email.value.trim() === "") {
+                showError(email, "Email is required");
+                isValid = false;
+            } else if (!email.value.includes("@")) {
+                showError(email, "Email must contain @");
+                isValid = false;
+            }
+
+            const usernameRegex = /^[a-zA-Z0-9_]+$/;
+            if (username.value.trim() === "") {
+                showError(username, "Username is required");
+                isValid = false;
+            } else if (username.value.includes(" ")) {
+                showError(username, "Username must not contain spaces");
+                isValid = false;
+            } else if (!usernameRegex.test(username.value)) {
+                showError(username, "No special characters allowed");
+                isValid = false;
+            }
+
+            const pwd = password.value;
+            let pwdErrors = [];
+
+            if (pwd.length < 8) pwdErrors.push("At least 8 characters");
+            if (!/[A-Z]/.test(pwd)) pwdErrors.push("1 uppercase letter");
+            if (!/[a-z]/.test(pwd)) pwdErrors.push("1 lowercase letter");
+            if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) pwdErrors.push("1 special character");
+
+            if (pwdErrors.length > 0) {
+                showError(password, pwdErrors.join(", "));
+                isValid = false;
+            }
+
+            if (confirm.value !== pwd) {
+                showError(confirm, "Password does not match");
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Create account form is valid (demo only)");
+            }
         });
     }
 

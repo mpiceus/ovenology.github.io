@@ -904,6 +904,44 @@ ul {
 	outline: none;
 }
 
+.help-block.with-errors {
+    position: relative;
+    min-height: 20px;
+}
+
+.help-block.with-errors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.help-block.with-errors ul li {
+    position: absolute;
+    background-color: rgba(255, 74, 82, 0.85);
+    border-radius: 45px;
+    padding: 6px 18px 4px;
+    bottom: -3px;
+    left: 5px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    z-index: 9;
+}
+
+.help-block.with-errors ul li:after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 25px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid rgba(255, 74, 82, 0.85);
+}
+
+
 .modal .modal-dialog .modal-content .modal-body .login-form .btn-fill {
 	color: #ffffff;
 	padding: 13px 50px;
@@ -8869,6 +8907,7 @@ ul {
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+	pointer-events: none;
 }
 
 .category-box-layout1 .item-figure {
@@ -9011,15 +9050,15 @@ ul {
 }
 
 .login-box-layout1 .login-form .btn-area .btn-fill.btn-primary:hover {
-	background: #e92731;
+	background: #5b3c07;
 }
 
 .login-box-layout1 .login-form .btn-area .btn-fill.btn-dark {
-	background: #111111;
+	background: #5b3c07;
 }
 
 .login-box-layout1 .login-form .btn-area .btn-fill.btn-dark:hover {
-	background: #e92731;
+	background: #c79972;
 }
 
 .login-box-layout1 .login-form .lost-password {
@@ -9028,7 +9067,7 @@ ul {
 }
 
 .login-box-layout1 .login-form .lost-password a {
-	color: #c79972;
+	color: #646464;
 	font-weight: 500;
 }
 

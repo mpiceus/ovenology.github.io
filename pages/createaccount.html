@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Ovenology | Login</title>
+    <title>Ovenology | Register</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
@@ -143,12 +143,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="breadcrumbs-area">
-                            <h1>Login</h1>
+                            <h1>Create An Account</h1>
                             <ul>
                                 <li>
                                     <a href="../index.html">Home</a>
                                 </li>
-                                <li>Login</li>
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>Create An Account</li>
                             </ul>
                         </div>
                     </div>
@@ -163,36 +166,34 @@
                     <div class="col-lg-8">
                         <div class="login-box-layout1">
                             <div class="section-heading heading-dark">
-                                <h2 class="item-heading">LOGIN FORM</h2>
+                                <h2 class="item-heading">CREATE AN ACCOUNT</h2>
                             </div>
-                            <form class="login-form" id="login-form" novalidate>
+                            <form class="login-form" id="register-form" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <label class="mb-3">Username or Email Address</label>
-                                        <input class="main-input-box" type="text" name="username" id="username" />
+                                        <label class="mb-3">Email Address</label>
+                                        <input class="main-input-box" type="email" name="email" id="reg-email" />
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label class="mb-3">Password</label>
-                                        <input class="main-input-box" type="password" name="password" id="password" />
+                                        <label class="mb-3">Create Username</label>
+                                        <input class="main-input-box" type="text" name="username" id="reg-username" />
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="checkbox1" type="checkbox">
-                                            <label for="checkbox1">Remember Me</label>
-                                        </div>
+                                    <div class="col-md-6 form-group">
+                                        <label class="mb-3"> Create Password</label>
+                                        <input class="main-input-box" type="password" name="password" id="reg-password" />
+                                        <div class="help-block with-errors"></div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="lost-password"><a href="#">Lost your password?</a></label>
+                                    <div class="col-md-6 form-group">
+                                        <label class="mb-3"> Confirm Password</label>
+                                        <input class="main-input-box" type="password" name="password" id="reg-confirm" />
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="btn-area">
-                                    <button class="btn-fill btn-primary" type="submit" value="Login">Login<i class="flaticon-next"></i></button>
-                                    <button class="btn-fill btn-dark" type="button" onclick="window.location.href='createaccount.html'">
-                                        Create an Account<i class="flaticon-next"></i></button>
+                                     <button class="btn-fill btn-dark" type="submit"> Create an Account<i class="flaticon-next"></i>
+                                     </button>
                                 </div>
                             </form>
                             <label>Or Connect With Social Networks</label>
