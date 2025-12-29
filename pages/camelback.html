@@ -287,24 +287,23 @@
                                 <div class="section-heading3 heading-dark">
                                     <h2 class="item-heading">LEAVE A COMMENT</h2>
                                 </div>
-                                <form class="leave-form-box">
+                                <form class="leave-form-box" id="review-form">
                                     <div class="row">
                                         <div class="col-12 form-group">
                                             <label>Comment :</label>
                                             <textarea placeholder="" class="textarea form-control" name="message" rows="7"
-                                                cols="20" data-error="Message field is required" required></textarea>
+                                                cols="20" id="review-message"></textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="col-lg-6 form-group">
                                             <label>Name :</label>
-                                            <input type="text" placeholder="" class="form-control" name="name" data-error="Name field is required"
-                                                required>
+                                            <input type="text" placeholder="" class="form-control" name="name" 
+                                            id="review-name">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="col-lg-6 form-group">
                                             <label>E-mail :</label>
-                                            <input type="email" placeholder="" class="form-control" name="email" data-error="E-mail field is required"
-                                                required>
+                                            <input type="email" placeholder="" class="form-control" name="email" id="review-email">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="col-12 form-group mb-0">

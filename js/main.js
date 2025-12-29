@@ -1,38 +1,6 @@
 (function ($) {
     "use strict";
-
-    /*-------------------------------------
-    Contact Form initiating
-    -------------------------------------*/
-    var contactForm = $('#contact-form');
-    if (contactForm.length) {
-        contactForm.validator().on('submit', function (e) {
-            var $this = $(this),
-                $target = contactForm.find('.form-response');
-            if (e.isDefaultPrevented()) {
-                $target.html("<div class='alert alert-success'><p>Please select all required field.</p></div>");
-            } else {
-                $.ajax({
-                    url: "vendor/php/contact-form-process.php",
-                    type: "POST",
-                    data: contactForm.serialize(),
-                    beforeSend: function () {
-                        $target.html("<div class='alert alert-info'><p>Loading ...</p></div>");
-                    },
-                    success: function (text) {
-                        if (text === "success") {
-                            $this[0].reset();
-                            $target.html("<div class='alert alert-success'><p>Message has been sent successfully.</p></div>");
-                        } else {
-                            $target.html("<div class='alert alert-success'><p>" + text + "</p></div>");
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-
+    
     /*-------------------------------------
     Jquery Serch Box
     -------------------------------------*/
@@ -453,9 +421,6 @@
     /*-------------------------------------
     Login Form
     -------------------------------------*/
-    /*-------------------------------------
-Login Form
--------------------------------------*/
     const loginForm = document.getElementById("login-form");
 
     if (loginForm) {
@@ -570,5 +535,130 @@ Login Form
             }
         });
     }
+
+    /*-------------------------------------
+    Subscribe Form
+    -------------------------------------*/
+    const subscribeForm = document.getElementById("subscribe-form");
+
+    if (subscribeForm) {
+        subscribeForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("subscribe-email");
+            let isValid = true;
+
+            clearError(email);
+
+            if (email.value.trim() === "") {
+                showError(email, "Email is required");
+                isValid = false;
+            } else if (!email.value.includes("@")) {
+                showError(email, "Email must contain @");
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("You have successfully subscribed to the latest news!");
+                email.value = "";
+            }
+        });
+    }
+    const reviewForm = document.getElementById("review-form");
+    /*-------------------------------------
+    Review Form
+    -------------------------------------*/
+    if (reviewForm) {
+        reviewForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const message = document.getElementById("review-message");
+            const name = document.getElementById("review-name");
+            const email = document.getElementById("review-email");
+
+            let isValid = true;
+
+            clearError(message);
+            clearError(name);
+            clearError(email);
+
+            /* ===== COMMENT ===== */
+            if (message.value.trim() === "") {
+                showError(message, "Comment is required");
+                isValid = false;
+            }
+
+            /* ===== NAME ===== */
+            if (name.value.trim() === "") {
+                showError(name, "Name is required");
+                isValid = false;
+            }
+
+            /* ===== EMAIL ===== */
+            if (email.value.trim() === "") {
+                showError(email, "Email is required");
+                isValid = false;
+            } else if (!email.value.includes("@")) {
+                showError(email, "Email must contain @");
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Review posted successfully!");
+                message.value = "";
+                name.value = "";
+                email.value = "";
+            }
+        });
+}
+    /*-------------------------------------
+    Contact Form
+    -------------------------------------*/
+    const contactForm = document.getElementById("contact-form");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = contactForm.querySelector('input[name="name"]');
+            const email = contactForm.querySelector('input[name="email"]');
+            const subject = contactForm.querySelector('input[name="subject"]');
+            const message = contactForm.querySelector('textarea[name="message"]');
+
+            let isValid = true;
+
+            // clear old errors
+            [name, email, subject, message].forEach(clearError);
+
+            if (name.value.trim() === "") {
+                showError(name, "Name is required");
+                isValid = false;
+            }
+
+            if (email.value.trim() === "") {
+                showError(email, "Email is required");
+                isValid = false;
+            } else if (!email.value.includes("@")) {
+                showError(email, "Email must contain @");
+                isValid = false;
+            }
+
+            if (subject.value.trim() === "") {
+                showError(subject, "Subject is required");
+                isValid = false;
+            }
+
+            if (message.value.trim() === "") {
+                showError(message, "Message is required");
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Your message has been sent successfully!");
+                contactForm.reset();
+            }
+        });
+    }
+
 
 })(jQuery);
